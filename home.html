@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="DaySavvy is your Emotionally Intelligent AI Assistant™ that helps you manage tasks, deadlines, and life with genuine understanding.">
+  <meta name="keywords" content="task manager, EI assistant, emotional intelligence, productivity, DaySavvy, smart reminders, action extractor">
+  <meta name="author" content="DaySavvy">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daysavvy.com/">
+  <meta property="og:title" content="DaySavvy - Emotionally Intelligent AI Assistant™">
+  <meta property="og:description" content="Your emotionally intelligent AI companion that truly understands you. Manage tasks, life, and everything in between.">
+  <meta property="og:image" content="https://daysavvy.com/static/Logo.png">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DaySavvy - Emotionally Intelligent AI Assistant™">
+  <meta name="twitter:description" content="Your emotionally intelligent AI companion that truly understands you.">
+  <meta name="twitter:image" content="https://daysavvy.com/static/Logo.png">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://daysavvy.com/">
+  
+  <!-- Structured Data for Google Search Logo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DaySavvy",
+    "url": "https://daysavvy.com",
+    "logo": "https://daysavvy.com/static/Logo.png",
+    "sameAs": [
+      "https://www.instagram.com/daysavvy",
+      "https://x.com/4rham_malik",
+      "https://www.linkedin.com/in/arham-malik-722335312/"
+    ],
+    "description": "DaySavvy is your Emotionally Intelligent AI Assistant™ that helps you manage tasks, deadlines, and life with genuine understanding."
+  }
+  </script>
+  
+  <!-- WebSite Schema for Sitelinks Search Box -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DaySavvy",
+    "url": "https://daysavvy.com"
+  }
+  </script>
+  
+  <title>DaySavvy - Emotionally Intelligent AI Assistant™</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    :root {
+      --primary: #667eea;
+      --primary-dark: #5a6fd6;
+      --secondary: #764ba2;
+      --dark: #1a1a2e;
+      --text: #2d3748;
+      --text-muted: #718096;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-light: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+      background: #fff;
+      overflow-x: hidden;
+      padding-top: 60px;
+    }
+    
+    /* Navbar - Fixed properly */
+    .navbar { 
+      background: #fff !important; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      height: 60px;
+      min-height: 60px;
+      padding: 0 16px !important;
+    }
+    .navbar .container-fluid {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 !important;
+    }
+    .navbar-brand img {
+      height: 44px !important;
+      width: auto;
+    }
+    .navbar-toggler {
+      border: none !important;
+      padding: 8px !important;
+      box-shadow: none !important;
+    }
+    .navbar-nav .nav-link { padding: 0 12px; transition: color 0.2s; font-weight: normal; font-size: 1.05rem; }
+    .navbar-nav .nav-link:hover { color: #4a90e2; text-decoration: underline; }
+    :root[data-bs-theme='dark'] .navbar { background: #1a1a2e !important; }
+    :root[data-bs-theme='dark'] .navbar-nav .nav-link { color: #eee !important; }
+    
+    /* Hero - no separate background strip */
+    .hero {
+      padding: 40px 24px 60px;
+      text-align: center;
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(102,126,234,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(118,75,162,0.06) 0%, transparent 40%);
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-20px, 20px); } }
+    .hero-content { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient-light); border: 1px solid rgba(102,126,234,0.2);
+      padding: 8px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 500; color: var(--primary); margin-bottom: 24px;
+    }
+    .hero h1 { font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 24px; color: var(--dark); }
+    .hero h1 span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-rotating {
+      margin-top: -10px;
+      margin-bottom: 18px;
+      min-height: 36px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #3158b4;
+      letter-spacing: 0.2px;
+      transition: opacity 0.25s ease;
+    }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 36px; max-width: 650px; margin-left: auto; margin-right: auto; }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary-custom {
+      padding: 14px 32px; background: var(--gradient); color: #fff; font-weight: 600;
+      border-radius: 12px; text-decoration: none; border: none; font-size: 1.05rem;
+      transition: all 0.2s; box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+    }
+    .btn-primary-custom:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(102,126,234,0.4); color: #fff; }
+    .btn-outline-custom {
+      padding: 14px 28px; border: 2px solid var(--primary); background: transparent;
+      color: var(--primary); font-weight: 600; border-radius: 12px; text-decoration: none; font-size: 1.05rem; transition: all 0.2s;
+    }
+    .btn-outline-custom:hover { background: var(--primary); color: #fff; }
+    
+    /* Launch Video */
+    .launch-video { padding: 60px 24px; background: #fff; text-align: center; }
+    .launch-video h2 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
+    .launch-video p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 32px; }
+    .video-container { max-width: 500px; margin: 0 auto; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+    .video-container iframe { width: 100%; height: 600px; border: none; }
+    
+    /* Action Extractor - GLORIFIED */
+    .action-extractor { padding: 100px 24px; background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%); position: relative; overflow: hidden; }
+    .action-extractor-content { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+    .ae-text h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 20px; color: var(--dark); line-height: 1.2; }
+    .ae-text h2 span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .ae-text p { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+    .ae-features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .ae-feature { display: flex; align-items: flex-start; gap: 14px; }
+    .ae-feature-icon { width: 40px; height: 40px; background: var(--gradient); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ae-feature-icon i { color: #fff; font-size: 1.2rem; }
+    .ae-feature-text h4 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; color: var(--dark); }
+    .ae-feature-text p { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    .ae-video-placeholder {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 24px; padding: 40px;
+      min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: #fff; box-shadow: 0 30px 80px rgba(102,126,234,0.3); position: relative; overflow: hidden;
+    }
+    .ae-video-placeholder i { font-size: 4rem; margin-bottom: 20px; opacity: 0.9; }
+    .ae-video-placeholder h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; }
+    .ae-video-placeholder p { opacity: 0.85; font-size: 1rem; }
+    
+    /* Features */
+    .features { padding: 100px 24px; background: #fff; }
+    .section-header { text-align: center; max-width: 650px; margin: 0 auto 60px; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; color: var(--dark); }
+    .section-header p { font-size: 1.1rem; color: var(--text-muted); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 1100px; margin: 0 auto; }
+    .feature-card { background: #fff; border: 1px solid #edf2f7; border-radius: 16px; padding: 32px; transition: all 0.3s ease; }
+    .feature-card:hover { border-color: var(--primary); box-shadow: 0 10px 40px rgba(102,126,234,0.12); transform: translateY(-5px); }
+    .feature-icon { width: 56px; height: 56px; background: var(--gradient-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .feature-icon i { font-size: 1.5rem; color: var(--primary); }
+    .feature-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; color: var(--dark); }
+    .feature-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+    
+    /* Stats */
+    .stats-section { padding: 80px 24px; background: linear-gradient(180deg, #f8f9ff 0%, #fff 100%); text-align: center; }
+    .stats-row { display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
+    .stat-number { font-size: 3rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 1rem; color: var(--text-muted); margin-top: 8px; }
+    
+    /* Feedback */
+    .feedback-section { padding: 80px 24px; background: #fff; text-align: center; }
+    .feedback-card { max-width: 700px; margin: 0 auto; background: var(--gradient-light); border: 2px solid rgba(102,126,234,0.15); border-radius: 24px; padding: 48px 40px; }
+    .feedback-card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+    .feedback-card h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; color: var(--dark); }
+    .feedback-card p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+    
+    /* CTA */
+    .cta-section { padding: 100px 24px; background: var(--gradient); text-align: center; color: #fff; }
+    .cta-section h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+    .cta-section p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-section .btn-white { padding: 14px 32px; background: #fff; color: var(--primary); font-weight: 600; border-radius: 12px; text-decoration: none; font-size: 1.05rem; transition: all 0.2s; display: inline-block; }
+    .cta-section .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+    
+    /* Footer */
+    .ds-footer-bg { background: #f6f8fa; width: 100%; padding-top: 32px; }
+    .ds-footer-box { background: #eaf3fb; border-radius: 18px; box-shadow: 0 4px 24px rgba(74,144,226,0.08); max-width: 1200px; margin: 0 auto; padding: 40px 24px 24px; }
+    .footer-title { color: #4a90e2 !important; font-weight: 700; font-size: 2rem; margin-top: 12px; }
+    .footer-link { color: #666 !important; text-decoration: none; display: block; margin-bottom: 6px; font-size: 1.05rem; transition: color 0.2s; text-align: center; }
+    .footer-link:hover { color: #222 !important; text-decoration: underline; }
+    .footer-socials { gap: 22px; justify-content: center; display: flex; flex-wrap: wrap; margin-bottom: 18px; }
+    .footer-socials .social { width: 44px; height: 44px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(74,144,226,0.08); transition: transform .15s; border: 1.5px solid #eaf3fb; }
+    .footer-socials .social img { width: 26px; height: 26px; filter: grayscale(1); }
+    .footer-socials .social:hover { transform: translateY(-2px) scale(1.08); }
+    .footer-socials .social:hover img { filter: none; }
+    
+    /* Dark Mode */
+    :root[data-bs-theme='dark'] body { background: #121212; color: #e0e0e0; }
+    :root[data-bs-theme='dark'] .hero, :root[data-bs-theme='dark'] .features, :root[data-bs-theme='dark'] .feedback-section { background: #1a1a2e; }
+    :root[data-bs-theme='dark'] .action-extractor, :root[data-bs-theme='dark'] .stats-section { background: #16213e; }
+    :root[data-bs-theme='dark'] h1, :root[data-bs-theme='dark'] h2, :root[data-bs-theme='dark'] h3, :root[data-bs-theme='dark'] h4 { color: #fff; }
+    :root[data-bs-theme='dark'] .feature-card { background: #1e1e2e; border-color: #333; }
+    :root[data-bs-theme='dark'] .feedback-card { background: #1e1e2e; border-color: #444; }
+    :root[data-bs-theme='dark'] .ds-footer-bg, :root[data-bs-theme='dark'] .ds-footer-box { background: #232a32; color: #e2e6ef; }
+    :root[data-bs-theme='dark'] .footer-link { color: #b6c0d3 !important; }
+    
+    /* Dark Mode - Layout Stability Fixes */
+    :root[data-bs-theme='dark'] .navbar { 
+      background: #1a1a2e !important; 
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    :root[data-bs-theme='dark'] .navbar-toggler-icon {
+      filter: invert(1);
+    }
+    :root[data-bs-theme='dark'] .hero::before {
+      background: radial-gradient(circle at 30% 50%, rgba(102,126,234,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(118,75,162,0.12) 0%, transparent 40%);
+    }
+    :root[data-bs-theme='dark'] .hero-badge {
+      background: rgba(102,126,234,0.2);
+      border-color: rgba(102,126,234,0.3);
+    }
+    :root[data-bs-theme='dark'] .hero p,
+    :root[data-bs-theme='dark'] .ae-text p,
+    :root[data-bs-theme='dark'] .feature-card p,
+    :root[data-bs-theme='dark'] .section-header p,
+    :root[data-bs-theme='dark'] .feedback-card p,
+    :root[data-bs-theme='dark'] .stat-label,
+    :root[data-bs-theme='dark'] .ae-feature-text p {
+      color: #a0aec0;
+    }
+    :root[data-bs-theme='dark'] .launch-video {
+      background: #1a1a2e;
+    }
+    :root[data-bs-theme='dark'] .btn-outline-custom {
+      border-color: rgba(255,255,255,0.3);
+      color: #fff;
+    }
+    :root[data-bs-theme='dark'] .btn-outline-custom:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--primary);
+    }
+    :root[data-bs-theme='dark'] .ae-feature-text h4 {
+      color: #fff;
+    }
+    :root[data-bs-theme='dark'] .video-container {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    :root[data-bs-theme='dark'] .hero-rotating {
+      color: #93c5fd;
+    }
+
+    .comeback-section {
+      padding: 64px 24px;
+      background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+    }
+    .comeback-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 6px 24px rgba(30,41,59,0.06);
+    }
+    .testimonial-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 48px;
+      color: var(--dark);
+    }
+    :root[data-bs-theme='dark'] .comeback-section {
+      background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+    }
+    :root[data-bs-theme='dark'] .comeback-card {
+      background: #1f2937;
+      border-color: #334155;
+    }
+    :root[data-bs-theme='dark'] .comeback-card h3 {
+      color: #f8fafc;
+    }
+    :root[data-bs-theme='dark'] .testimonial-title {
+      color: #f8fafc;
+    }
+    
+    /* Smooth theme transition */
+    body, .navbar, .hero, .features, .action-extractor, .stats-section, .feedback-section, 
+    .feature-card, .feedback-card, .ds-footer-bg, .ds-footer-box, .launch-video,
+    h1, h2, h3, h4, p, .nav-link, .btn {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+    
+    /* Hero Branding - Professional Design */
+    .hero-branding {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding: 16px 32px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+    }
+    .hero-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(102, 126, 234, 0.3));
+    }
+    .hero-brand-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .hero-brand-name {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+    .hero-brand-tagline {
+      font-size: 0.85rem;
+      color: #a0aec0;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    :root[data-bs-theme='dark'] .hero-branding {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.1);
+    }
+    @media (max-width: 576px) {
+      .hero-branding {
+        padding: 12px 20px;
+        gap: 12px;
+      }
+      .hero-logo {
+        width: 60px;
+        height: 60px;
+      }
+      .hero-brand-name {
+        font-size: 1.6rem;
+      }
+      .hero-brand-tagline {
+        font-size: 0.75rem;
+      }
+    }
+    
+    /* Mobile Navbar Dropdown Fix */
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 16px 20px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        border-radius: 0 0 16px 16px;
+        z-index: 999;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+      :root[data-bs-theme='dark'] .navbar-collapse { background: #1e1e2e; }
+      .navbar-nav {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        width: 100%;
+      }
+      .navbar-nav .nav-item {
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        width: 100%;
+      }
+      .navbar-nav .nav-item:last-child { border-bottom: none; }
+      :root[data-bs-theme='dark'] .navbar-nav .nav-item { border-color: rgba(255,255,255,0.08); }
+      .navbar-nav .nav-link {
+        padding: 14px 16px !important;
+        font-size: 0.95rem !important;
+        display: block;
+        text-align: left;
+        width: 100%;
+        color: #333;
+      }
+      :root[data-bs-theme='dark'] .navbar-nav .nav-link { color: #e5e5e5 !important; }
+      .navbar .d-flex.align-items-center {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0,0,0,0.08);
+      }
+      :root[data-bs-theme='dark'] .navbar .d-flex.align-items-center { border-color: rgba(255,255,255,0.1); }
+      .navbar .d-flex.align-items-center .btn {
+        width: 100%;
+        padding: 12px 20px !important;
+        text-align: center;
+        font-size: 0.95rem;
+        border-radius: 10px;
+      }
+      #themeToggle {
+        align-self: center;
+        margin-bottom: 8px;
+      }
+    }
+    
+    /* Mobile content adjustments - keep same as desktop */
+    @media (max-width: 992px) { .features-grid { grid-template-columns: repeat(2, 1fr); } .action-extractor-content { grid-template-columns: 1fr; gap: 40px; } .ae-text { text-align: center; } }
+    @media (max-width: 768px) { 
+      .features-grid { grid-template-columns: 1fr; } 
+      /* How It Works - stack on mobile */
+      section > div > div[style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+      /* Retention section cards */
+      section div[style*="grid-template-columns: repeat(3, minmax(0, 1fr))"] {
+        grid-template-columns: 1fr !important;
+      }
+      /* Hero traction strip */
+      section div[style*="grid-template-columns: repeat(3, minmax(140px, 1fr))"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="{{ url_for('static', filename='Logo.png') }}" alt="Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto flex-lg-row flex-column gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('features') }}">Upcoming Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('vision') }}">Our Vision</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('calendar') }}">Calendar</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('pricing') }}">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('feedback_joinus') }}#joinus">Join Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('feedback_joinus') }}">Feedback</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://arhammalik.me" target="_blank">About Us</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
+          <button id="themeToggle" class="p-0 border-0 bg-transparent" title="Toggle dark mode" style="font-size:1.35rem;">
+            <span id="themeIcon">☀️</span>
+          </button>
+          {% if current_user %}
+            <span class="ms-2">Hi, {{ current_user.full_name }}!</span>
+            <a class="btn btn-primary btn-sm ms-2" href="/">Go to Dashboard</a>
+          {% else %}
+            <a class="btn btn-primary btn-sm" href="{{ url_for('login') }}">Login</a>
+            <a class="btn btn-success btn-sm" href="{{ url_for('register') }}">Create account</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <!-- Professional Branding -->
+      <div class="hero-branding">
+        <img src="{{ url_for('static', filename='Logo.png') }}" alt="DaySavvy" class="hero-logo">
+        <div class="hero-brand-text">
+          <span class="hero-brand-name">DaySavvy</span>
+          <span class="hero-brand-tagline">Emotionally Intelligent AI Assistant™</span>
+        </div>
+      </div>
+
+      <div class="hero-badge"><i class="bi bi-stars"></i>Introducing the Future of Productivity</div>
+      <h1>The AI Assistant That <span>Actually Gets You</span></h1>
+      <div class="hero-rotating" id="heroRotatingLine">Plans your day in seconds.</div>
+      <p>DaySavvy combines emotional intelligence with powerful task management. It's not just about getting things done — it's about understanding how you feel while doing them.</p>
+      
+      <!-- Quick Value Props -->
+      <div style="display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: var(--text-muted);">
+          <i class="bi bi-check-circle-fill" style="color: #10b981;"></i> Free forever
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: var(--text-muted);">
+          <i class="bi bi-check-circle-fill" style="color: #10b981;"></i> Setup in 30 seconds
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: var(--text-muted);">
+          <i class="bi bi-check-circle-fill" style="color: #10b981;"></i> Works everywhere
+        </div>
+      </div>
+      
+      <div class="hero-cta">
+        <a href="{{ url_for('register') }}" class="btn-primary-custom"><i class="bi bi-rocket-takeoff me-2"></i>Get Started Free</a>
+        <a href="#launch-video" class="btn-outline-custom"><i class="bi bi-play-circle me-2"></i>Watch Demo</a>
+      </div>
+      
+      <!-- Social Proof -->
+      <div style="margin-top: 36px; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center;">
+          <div style="display: flex;">
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #667eea, #764ba2); border: 2px solid #fff; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8rem; font-weight: 600;">A</div>
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f093fb, #f5576c); border: 2px solid #fff; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8rem; font-weight: 600;">R</div>
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #4facfe, #00f2fe); border: 2px solid #fff; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8rem; font-weight: 600;">S</div>
+            <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #43e97b, #38f9d7); border: 2px solid #fff; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.8rem; font-weight: 600;">M</div>
+          </div>
+        </div>
+        <div style="font-size: 0.9rem; color: var(--text-muted);">
+          Trusted by <strong style="color: var(--primary);">500+ users</strong> worldwide
+        </div>
+      </div>
+
+      <!-- Momentum strip -->
+      <div style="margin-top:24px; display:grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap:10px; max-width:640px; margin-left:auto; margin-right:auto;">
+        <div style="background:#ffffffcc; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+          <div style="font-weight:800; font-size:1.05rem; color:var(--dark);">10K+</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Tasks finished with DaySavvy</div>
+        </div>
+        <div style="background:#ffffffcc; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+          <div style="font-weight:800; font-size:1.05rem; color:var(--dark);">Daily</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Planning streak support</div>
+        </div>
+        <div style="background:#ffffffcc; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+          <div style="font-weight:800; font-size:1.05rem; color:var(--dark);">Smart</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Adaptive reminders</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comeback Engine -->
+  <section class="comeback-section">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="section-header" style="margin-bottom: 36px;">
+        <h2>Why People Keep Coming Back</h2>
+        <p>Everything is designed to make progress feel easy, visible, and worth returning for tomorrow.</p>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:18px;">
+        <div class="comeback-card">
+          <div style="font-size:1.4rem;">🌅</div>
+          <h3 style="font-size:1.08rem; margin:10px 0 8px;">Clear Morning Start</h3>
+          <p style="font-size:0.92rem; color:var(--text-muted); margin:0;">Open DaySavvy, get a focused plan, and know exactly what to do first.</p>
+        </div>
+        <div class="comeback-card">
+          <div style="font-size:1.4rem;">🔁</div>
+          <h3 style="font-size:1.08rem; margin:10px 0 8px;">Visible Progress</h3>
+          <p style="font-size:0.92rem; color:var(--text-muted); margin:0;">See tasks completed, streaks built, and momentum growing day after day.</p>
+        </div>
+        <div class="comeback-card">
+          <div style="font-size:1.4rem;">🤝</div>
+          <h3 style="font-size:1.08rem; margin:10px 0 8px;">Social Accountability</h3>
+          <p style="font-size:0.92rem; color:var(--text-muted); margin:0;">Keep your progress visible so consistency becomes easier to maintain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Launch Video -->
+  <section class="launch-video" id="launch-video">
+    <h2>See DaySavvy in Action</h2>
+    <p>Watch our official launch video and discover what makes us different</p>
+    <div class="video-container" style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); background: #000;">
+      <a href="https://www.instagram.com/reel/DTIXiyikha7/" target="_blank" rel="noopener" style="text-decoration: none; display: block; position: relative;">
+        <!-- Video Thumbnail Background -->
+        <div style="background: linear-gradient(180deg, rgba(102,126,234,0.95) 0%, rgba(118,75,162,0.95) 100%); padding: 60px 40px; text-align: center; position: relative;">
+          <!-- Instagram Badge -->
+          <div style="position: absolute; top: 16px; right: 16px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding: 8px 16px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span style="color: white; font-weight: 600; font-size: 0.85rem;">Instagram Reel</span>
+          </div>
+          
+          <!-- Play Button -->
+          <div style="width: 100px; height: 100px; background: rgba(255,255,255,0.95); border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); transition: transform 0.2s;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="#667eea"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          
+          <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px;">DaySavvy Launch Video</h3>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 24px;">See what makes us the Emotionally Intelligent AI Assistant™</p>
+          
+          <!-- CTA Button -->
+          <span style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: white; color: #333; border-radius: 12px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="url(#insta-gradient)">
+              <defs><linearGradient id="insta-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs>
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+            </svg>
+            Watch on Instagram
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Action Extractor -->
+  <section class="action-extractor" id="action-extractor">
+    <div class="action-extractor-content">
+      <div class="ae-text">
+        <h2><span>Action Extractor</span><br>The Magic Feature</h2>
+        <p>Snap a photo of your syllabus, whiteboard, handwritten notes, or any document — and watch as DaySavvy's AI instantly extracts every task, deadline, and action item for you. No more manual entry. No more missed deadlines.</p>
+        <div class="ae-features">
+          <div class="ae-feature">
+            <div class="ae-feature-icon"><i class="bi bi-camera-fill"></i></div>
+            <div class="ae-feature-text"><h4>Photo to Tasks in Seconds</h4><p>Just upload any image — syllabus, notes, or even a photo of a board</p></div>
+          </div>
+          <div class="ae-feature">
+            <div class="ae-feature-icon"><i class="bi bi-magic"></i></div>
+            <div class="ae-feature-text"><h4>AI-Powered Extraction</h4><p>Our advanced vision AI understands context and extracts actionable items</p></div>
+          </div>
+          <div class="ae-feature">
+            <div class="ae-feature-icon"><i class="bi bi-calendar-check-fill"></i></div>
+            <div class="ae-feature-text"><h4>Auto-Set Deadlines</h4><p>Dates are automatically detected and tasks are scheduled for you</p></div>
+          </div>
+        </div>
+        <a href="{{ url_for('register') }}" class="btn-primary-custom"><i class="bi bi-stars me-2"></i>Try Action Extractor Now</a>
+      </div>
+      
+      <!-- Instagram Video Card -->
+      <div style="position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(102,126,234,0.3); background: #000;">
+        <a href="https://www.instagram.com/reel/DTLAin1EhNV/" target="_blank" rel="noopener" style="text-decoration: none; display: block;">
+          <div style="background: linear-gradient(180deg, rgba(102,126,234,0.95) 0%, rgba(118,75,162,0.95) 100%); padding: 50px 30px; text-align: center; position: relative; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <!-- Instagram Badge -->
+            <div style="position: absolute; top: 16px; right: 16px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding: 8px 14px; border-radius: 8px; display: flex; align-items: center; gap: 6px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/></svg>
+              <span style="color: white; font-weight: 600; font-size: 0.8rem;">Reel</span>
+            </div>
+            
+            <!-- Play Button -->
+            <div style="width: 90px; height: 90px; background: rgba(255,255,255,0.95); border-radius: 50%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="#667eea"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            
+            <h3 style="color: white; font-size: 1.3rem; font-weight: 700; margin-bottom: 8px;">Action Extractor Demo</h3>
+            <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-bottom: 20px;">See how it extracts tasks from any image in seconds!</p>
+            
+            <!-- CTA Button -->
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: white; color: #333; border-radius: 10px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="url(#insta-gradient2)">
+                <defs><linearGradient id="insta-gradient2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs>
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/>
+              </svg>
+              Watch on Instagram
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <h2>Why Choose DaySavvy?</h2>
+      <p>Built with emotional intelligence at its core — we understand you like a caring friend would.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon"><i class="bi bi-heart-pulse"></i></div><h3>Emotional Intelligence</h3><p>DaySavvy understands when you're stressed, tired, or overwhelmed — and adjusts its approach accordingly.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="bi bi-chat-dots"></i></div><h3>Natural Conversations</h3><p>Just talk naturally. "I have a meeting at 3pm tomorrow" — done. No forms, no clicks, just you.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="bi bi-mic-fill"></i></div><h3>Voice Commands</h3><p>Hands busy? Just speak. Add tasks, check your schedule, or chat with DaySavvy using your voice.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="bi bi-bell-fill"></i></div><h3>Smart Reminders</h3><p>Get reminded at the right time, in the right way. We learn when you're most likely to act.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="bi bi-calendar-week"></i></div><h3>Beautiful Calendar</h3><p>See your life at a glance. Drag, drop, reschedule — planning has never felt this good.</p></div>
+      <div class="feature-card"><div class="feature-icon"><i class="bi bi-shield-check"></i></div><h3>Privacy First</h3><p>Your data is yours. We never sell it, share it, or use it against you. Ever.</p></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Happy Users</div></div>
+      <div class="stat-item"><div class="stat-number">10K+</div><div class="stat-label">Tasks Completed</div></div>
+      <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Love Rate</div></div>
+      <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">DaySavvy Support</div></div>
+    </div>
+  </section>
+
+  <!-- How It Works - New Section for Retention -->
+  <section style="padding: 80px 24px; background: #fff;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 16px; color: var(--dark);">Get Started in 3 Simple Steps</h2>
+      <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 48px;">No complicated setup. Just sign up and start being productive.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <div style="text-align: center;">
+          <div style="width: 64px; height: 64px; background: var(--gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #fff; font-weight: 700;">1</div>
+          <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Create Your Account</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">One-click Google sign up. Takes less than 10 seconds.</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 64px; height: 64px; background: var(--gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #fff; font-weight: 700;">2</div>
+          <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Talk to DaySavvy</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Share your tasks, goals, or just how you're feeling today.</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 64px; height: 64px; background: var(--gradient); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #fff; font-weight: 700;">3</div>
+          <h4 style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: var(--dark);">Stay on Track</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Get smart reminders, motivation, and support when you need it.</p>
+        </div>
+      </div>
+      
+      <a href="{{ url_for('register') }}" class="btn-primary-custom" style="margin-top: 40px;"><i class="bi bi-arrow-right-circle me-2"></i>Start Your Journey</a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section style="padding: 80px 24px; background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <h2 class="testimonial-title">What Our Users Say</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        <div style="background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #edf2f7;">
+          <div style="display: flex; gap: 4px; margin-bottom: 12px;">
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6; margin-bottom: 16px;">"DaySavvy actually remembers what I told it yesterday and checks in on me. It feels like talking to a friend who genuinely cares!"</p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600;">S</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem; color: var(--dark);">Sakshi M.</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">College Student</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #edf2f7;">
+          <div style="display: flex; gap: 4px; margin-bottom: 12px;">
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6; margin-bottom: 16px;">"The Action Extractor is magic! I took a photo of my syllabus and it created all my deadlines automatically. Saved me hours!"</p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #f093fb, #f5576c); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600;">A</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem; color: var(--dark);">Arjun K.</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Engineering Student</div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid #edf2f7;">
+          <div style="display: flex; gap: 4px; margin-bottom: 12px;">
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+            <i class="bi bi-star-fill" style="color: #fbbf24;"></i>
+          </div>
+          <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6; margin-bottom: 16px;">"Finally a task app that doesn't feel robotic. When I said I was stressed, DaySavvy offered to reschedule my tasks. So thoughtful!"</p>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #4facfe, #00f2fe); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600;">R</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem; color: var(--dark);">Riya P.</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Working Professional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback -->
+  <section class="feedback-section">
+    <div class="feedback-card">
+      <i class="bi bi-chat-heart-fill"></i>
+      <h2>We'd Love Your Feedback!</h2>
+      <p>DaySavvy is built for YOU. Have a feature idea? Found a bug? Just want to say hi? We read every single message and genuinely care about making DaySavvy better for you.</p>
+      <a href="{{ url_for('feedback_joinus') }}" class="btn-primary-custom"><i class="bi bi-send-fill me-2"></i>Share Your Thoughts</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to Feel Less Overwhelmed?</h2>
+    <p>Join hundreds who've found their calm in the chaos with DaySavvy.</p>
+    <a href="{{ url_for('register') }}" class="btn-white"><i class="bi bi-arrow-right-circle me-2"></i>Get Started Free</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ds-footer-bg mt-auto">
+    <div class="ds-footer-box">
+      <div class="row gy-4 justify-content-center gap-4">
+        <div class="col-12 text-center mb-2">
+          <img src="{{ url_for('static', filename='Logo.png') }}" alt="DaySavvy" style="height:70px;">
+          <div class="footer-title mt-2" style="font-size:1.6rem;">DaySavvy</div>
+          <div class="footer-socials mt-3 d-flex justify-content-center gap-3 flex-wrap">
+            <a class="social" href="https://www.instagram.com/daysavvy"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram"></a>
+            <a class="social" href="https://x.com/4rham_malik"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X"></a>
+            <a class="social" href="https://www.linkedin.com/in/arham-malik-722335312/"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn"></a>
+            <a class="social" href="https://github.com/arhammalik21"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/github.svg" alt="GitHub"></a>
+            <a class="social" href="https://www.youtube.com/@DaySavvy/featured"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube"></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-2 text-center">
+          <div class="fw-semibold mb-2">Company</div>
+          <a href="https://arhammalik.me" target="_blank" class="footer-link">About us</a>
+          <a href="{{ url_for('feedback_joinus') }}" class="footer-link">Feedback</a>
+          <a href="{{ url_for('terms_privacy') }}" class="footer-link">Terms & privacy</a>
+        </div>
+        <div class="col-6 col-md-2 text-center">
+          <div class="fw-semibold mb-2">Download</div>
+          <a href="#" class="footer-link">iOS & Android</a>
+          <a href="#" class="footer-link">Mac & Windows</a>
+          <a href="{{ url_for('calendar') }}" class="footer-link">Calendar</a>
+        </div>
+        <div class="col-6 col-md-2 text-center">
+          <div class="fw-semibold mb-2">Resources</div>
+          <a href="#" class="footer-link">Help center</a>
+          <a href="#" class="footer-link">Pricing</a>
+          <a href="#" class="footer-link">Blog</a>
+          <a href="#" class="footer-link">Community</a>
+        </div>
+        <div class="col-6 col-md-2 text-center">
+          <div class="fw-semibold mb-2">DaySavvy's</div>
+          <a href="{{ url_for('features') }}" class="footer-link">Upcoming Features</a>
+          <a href="{{ url_for('vision') }}" class="footer-link">Our Vision</a>
+          <a href="#" class="footer-link">Personal</a>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col text-center text-muted small">Cookie settings | © 2026 <a href="https://arhammalik.me" target="_blank" style="color:#4a90e2;font-weight:600;">Arham Malik</a> All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Apply theme immediately to prevent flash
+    (function() {
+      let saved = 'light';
+      try {
+        saved = localStorage.getItem('theme') || saved;
+      } catch {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        saved = prefersDark ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-bs-theme', saved === 'dark' ? 'dark' : 'light');
+    })();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const html = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      if (!btn || !icon) return;
+
+      const setIcon = t => { icon.textContent = t === 'dark' ? '🌙' : '☀️'; };
+      const currentTheme = html.getAttribute('data-bs-theme') || 'light';
+      setIcon(currentTheme);
+      
+      btn.addEventListener('click', () => { 
+        const n = html.getAttribute('data-bs-theme') === 'light' ? 'dark' : 'light'; 
+        html.setAttribute('data-bs-theme', n); 
+        try { localStorage.setItem('theme', n); } catch {}
+        setIcon(n); 
+      });
+
+      // Rotating value headline keeps the hero dynamic without visual clutter.
+      const rotatingLine = document.getElementById('heroRotatingLine');
+      if (rotatingLine) {
+        const lines = [
+          'Plans your day in seconds.',
+          'Turns chaos into clear priorities.',
+          'Reminds you at the right moment.',
+          'Helps you stay consistent, daily.',
+          'Turns your ideas into finished tasks.'
+        ];
+        let idx = 0;
+        setInterval(() => {
+          rotatingLine.style.opacity = '0';
+          setTimeout(() => {
+            idx = (idx + 1) % lines.length;
+            rotatingLine.textContent = lines[idx];
+            rotatingLine.style.opacity = '1';
+          }, 180);
+        }, 2600);
+      }
+    });
+  </script>
+  
+  <!-- Sticky Bottom CTA for Mobile - Increases Conversions -->
+  <div id="stickyBottomCTA" style="display:none; position:fixed; bottom:0; left:0; right:0; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding:12px 16px; z-index:999; box-shadow:0 -4px 20px rgba(0,0,0,0.15);">
+    <div style="display:flex; align-items:center; justify-content:space-between; max-width:600px; margin:0 auto;">
+      <div style="color:#fff;">
+        <div style="font-weight:600; font-size:0.95rem;">Start organizing your life</div>
+        <div style="font-size:0.8rem; opacity:0.85;">100% free forever</div>
+      </div>
+      <a href="{{ url_for('register') }}" style="background:#fff; color:#667eea; padding:10px 20px; border-radius:10px; font-weight:600; text-decoration:none; font-size:0.9rem; white-space:nowrap;">
+        Sign Up Free
+      </a>
+    </div>
+  </div>
+  
+  <script>
+    // Show sticky CTA after scrolling past hero section
+    (function() {
+      const stickyCTA = document.getElementById('stickyBottomCTA');
+      if (!stickyCTA) return;
+      
+      let lastScrollY = 0;
+      let ticking = false;
+      
+      function updateCTA() {
+        // Show after scrolling 400px (past hero)
+        if (window.scrollY > 400) {
+          stickyCTA.style.display = 'block';
+        } else {
+          stickyCTA.style.display = 'none';
+        }
+        ticking = false;
+      }
+      
+      window.addEventListener('scroll', function() {
+        lastScrollY = window.scrollY;
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateCTA();
+          });
+          ticking = true;
+        }
+      });
+      
+      // Add padding to footer so sticky bar doesn't overlap
+      const footer = document.querySelector('.ds-footer-bg');
+      if (footer && window.innerWidth < 768) {
+        footer.style.paddingBottom = '80px';
+      }
+    })();
+  </script>
+</body>
+</html>
