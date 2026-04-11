@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DaySavvy Features • Emotionally Intelligent AI Assistant™</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Discover DaySavvy's powerful features: voice commands, intelligent task extraction, emotion-aware reminders, and your DaySavvy assistant.">
+  <meta name="keywords" content="DaySavvy features, DaySavvy assistant, voice commands, smart reminders, task management, empathetic intelligence">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="DaySavvy Features - DaySavvy Assistant">
+  <meta property="og:description" content="Voice commands, intelligent task extraction, emotion-aware reminders, and more.">
+  <meta property="og:url" content="https://daysavvy.com/features">
+  <link rel="canonical" href="https://daysavvy.com/features">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      min-height: 100vh;
+      color: #222b45;
+      background: linear-gradient(135deg, #3765d6 0%, #9ec4ff 60%, #e8f1ff 100%);
+      background-attachment: fixed;
+      animation: gradientMove 12s ease-in-out infinite alternate;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .hero {
+      text-align: center;
+      padding: 56px 16px 32px;
+      background: rgba(55,101,214,0.85);
+      color: #fff;
+      border-radius: 0 0 36px 36px;
+      box-shadow: 0 8px 32px rgba(55,101,214,0.10);
+      margin-bottom: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+      background: linear-gradient(90deg,#fff,#e8f1ff 70%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      filter: drop-shadow(0 2px 8px #3765d6aa);
+      animation: shine 2.5s linear infinite;
+    }
+    @keyframes shine {
+      0% { opacity: 1; }
+      50% { opacity: 0.85; }
+      100% { opacity: 1; }
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #e8edf6;
+      margin-bottom: 0;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: .92;
+    }
+    .features-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 12px 32px;
+    }
+    .features-grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 22px;
+      box-shadow: 0 4px 32px 0 #3765d6aa, 0 1.5px 8px #3765d633;
+      border: 1.5px solid #e8edf6;
+      padding: 36px 24px 28px 24px;
+      min-height: 210px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform .18s, box-shadow .18s, border-color .18s;
+      cursor: pointer;
+    }
+    .feature-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 12px 48px 0 #3765d6cc, 0 1.5px 8px #3765d6;
+      border-color: #3765d6;
+      background: linear-gradient(120deg, #e8f1ff 70%, #fff 100%);
+      z-index: 2;
+    }
+    .feature-emoji {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 3rem;
+      opacity: .22;
+      pointer-events: none;
+      transition: opacity .3s, top .3s, right .3s, font-size .3s;
+      filter: drop-shadow(0 2px 8px #3765d6aa);
+      z-index: 0;
+      animation: emojiPulse 2.5s infinite alternate;
+    }
+    @keyframes emojiPulse {
+      0% { opacity: .22; }
+      50% { opacity: .38; }
+      100% { opacity: .22; }
+    }
+    .feature-card:hover .feature-emoji {
+      opacity: .45;
+      top: 10px;
+      right: 14px;
+      font-size: 3.5rem;
+    }
+    .feature-pill {
+      display: inline-block;
+      padding: 7px 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg,#3765d6 0%,#9ec4ff 100%);
+      color: #fff;
+      font-size: .97rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: .5px;
+      box-shadow: 0 2px 8px rgba(74,144,226,0.12);
+      border: 1px solid #9ec4ff44;
+      text-shadow: 0 1px 4px #3765d6cc;
+    }
+    .feature-pill.live {
+      background: linear-gradient(90deg,#dc2626 0%,#ef4444 100%);
+      box-shadow: 0 2px 10px rgba(220,38,38,0.35);
+      border: 1px solid #ef444466;
+      text-shadow: 0 1px 4px #991b1bcc;
+    }
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 12px 0 10px;
+      color: #222b45;
+      letter-spacing: -.5px;
+    }
+    .feature-desc {
+      color: #4f5d7e;
+      font-size: 1.04rem;
+      line-height: 1.6;
+      font-weight: 500;
+      margin-bottom: 0;
+      opacity: .93;
+    }
+    .back-btn {
+      margin: 40px auto 0 auto;
+      font-size: 1.08rem;
+      border-radius: 999px;
+      padding: 12px 38px;
+      background: linear-gradient(90deg,#3765d6 0%,#9ec4ff 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 12px #3765d644;
+      transition: background .2s, box-shadow .2s;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: .5px;
+      display: block;
+      width: fit-content;
+      text-align: center;
+    }
+    .back-btn:hover {
+      background: linear-gradient(90deg,#9ec4ff 0%,#3765d6 100%);
+      box-shadow: 0 4px 24px #3765d688;
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 28px 0 12px; border-radius: 0 0 12px 12px; }
+      .hero-title { font-size: 1.25rem; }
+      .hero-desc { font-size: .97rem; }
+      .features-section { padding: 18px 2px 12px; }
+      .features-grid { gap: 14px; }
+      .feature-card { padding: 16px 10px 12px 12px; border-radius: 13px; min-height: 120px; }
+      .feature-emoji { font-size: 2rem; top: 10px; right: 10px; }
+      .feature-card:hover .feature-emoji { font-size: 2.3rem; top: 6px; right: 6px; }
+      .feature-title { font-size: 1.02rem; margin: 7px 0 5px; }
+      .feature-pill { font-size: .89rem; padding: 5px 10px; }
+      .feature-desc { font-size: .97rem; }
+      .back-btn { margin-top: 24px; font-size: .98rem; padding: 10px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-title">DaySavvy: The Future of Emotional Intelligence</div>
+    <p class="hero-desc">Experience the next wave of AI-powered emotional intelligence.<br>DaySavvy is your creative, caring, and proactive companion for a smarter, happier, and more balanced life.<br>Explore what's coming soon (one feature is already <strong style="color:#fecaca;">LIVE NOW</strong>):</p>
+  </div>
+  <section class="features-section">
+    <div class="features-grid">
+      {% set cards = [
+        ("Coming Soon","Auto-Task Execution","DaySavvy doesn’t just plan tasks — it executes them by drafting emails, messages, summaries, and follow-ups automatically.","⚙"),
+
+("Coming Soon","Emotion-Aware Auto-Scheduling","DaySavvy automatically reshuffles your calendar when you’re tired, stressed, or overloaded — without manual input.","📅"),
+
+("Coming Soon","Adaptive Reminder Intelligence","Reminders evolve if ignored — changing timing, tone, and urgency until action actually happens.","⏰"),
+
+("Live","Inbox-to-Action Automation","Messages, notes, and conversations are automatically converted into scheduled tasks so nothing is forgotten.","📥"),
+
+("Coming Soon","Daily Auto-Planning & Review","DaySavvy plans your day every morning and reviews progress every night — automatically.","📊"),
+
+("Coming Soon","Focus Autopilot","DaySavvy launches focus sessions, blocks distractions, and adjusts intensity based on your energy level.","🎯"),
+
+("Coming Soon","Failure Recovery Engine","When you fall behind, DaySavvy automatically rebuilds your plan so you recover without stress or guilt.","🛟"),
+("Coming Soon","Companion Care Mode","When you’re overwhelmed or low, DaySavvy simplifies tasks, checks in calmly, and stays with you until stability returns.","🤝"),
+("Coming Soon","Natural Voice Upgrade","More expressive, human-like voice responses for conversations and reminders.","🎙"),
+      ] %}
+      {% for tag, title, desc, emoji in cards %}
+      <div class="feature-card" tabindex="0" aria-label="{{ title }}">
+        <span class="feature-emoji">{{ emoji }}</span>
+        <div class="feature-pill{{ ' live' if tag == 'Live' }}">{{ 'LIVE NOW' if tag == 'Live' else tag }}</div>
+        <div class="feature-title">{{ title }}</div>
+        <div class="feature-desc">{{ desc }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{{ url_for('index') }}" class="back-btn">Back to DaySavvy</a>
+  </section>
+</body>
+</html>
