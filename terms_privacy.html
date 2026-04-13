@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="{{ request.cookies.get('theme', 'light') or 'light' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DaySavvy • Terms & Privacy</title>
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://daysavvy.com/terms">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    body { background:#f7f9fc; font-family:'Inter','Montserrat',Arial,sans-serif; padding:0; }
+    .terms-shell { max-width:900px; margin:0 auto; background:#fff; border-radius:20px; padding:32px 16px; box-shadow:0 10px 40px rgba(15,23,42,0.08); }
+    .section { margin-bottom:28px; }
+    .section h3 { font-weight:700; margin-bottom:10px; font-size:1.18rem; }
+    .pill { display:inline-flex; padding:6px 16px; border-radius:999px; background:#e8f1ff; color:#3c6fe8; font-weight:600; font-size:.85rem; }
+    ul { padding-left:18px; }
+    .logo-img { height:54px; }
+    .back-btn { border-radius:999px;font-weight:600;font-size:1.1rem;box-shadow:0 2px 12px rgba(74,144,226,0.07); }
+    @media (max-width: 600px) {
+      .terms-shell { padding:18px 4px; border-radius:12px; }
+      .logo-img { height:38px; }
+      h1 { font-size:1.3rem; }
+      .section h3 { font-size:1.05rem; }
+    }
+    :root[data-bs-theme='dark'] body { background:#0f141c; color:#e4e8f1; }
+    :root[data-bs-theme='dark'] .terms-shell { background:#171d28; box-shadow:0 10px 40px rgba(0,0,0,0.6); }
+    :root[data-bs-theme='dark'] .pill { background:rgba(74,144,226,0.15); color:#a9c7ff; }
+  </style>
+</head>
+<body>
+  <div class="terms-shell mt-4 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div>
+        <div class="pill mb-2">Terms & Privacy</div>
+        <h1 class="mb-1">DaySavvy Terms &amp; Privacy</h1>
+        <p class="text-muted mb-0" style="font-size:0.98rem;">Last updated: {{ updated.strftime('%B %d, %Y') }}</p>
+      </div>
+      <img src="{{ url_for('static', filename='Logo.png') }}" alt="DaySavvy" class="logo-img">
+    </div>
+
+    <div class="section">
+      <h3>1. What is DaySavvy?</h3>
+      <p>DaySavvy is an Emotionally Intelligent AI Assistant™ that helps you manage tasks, goals, and well-being. By using DaySavvy, you agree to these terms.</p>
+    </div>
+
+    <div class="section">
+      <h3>2. What data do we collect?</h3>
+      <ul>
+        <li><b>Account info:</b> username, full name, email, and password (securely hashed).</li>
+        <li><b>Profile data:</b> avatar (if provided).</li>
+        <li><b>Workspace data:</b> tasks, goals, subtasks, reminders, and feedback you submit.</li>
+        <li><b>Voice & chat:</b> voice transcripts and chat history (used to provide responses).</li>
+        <li><b>Usage data:</b> feature usage statistics, session activity, and error logs (for improving the experience).</li>
+      </ul>
+      <p>We use this data only to provide, secure, and improve DaySavvy. We do <b>not</b> sell your data or use ad networks.</p>
+    </div>
+
+    <div class="section">
+      <h3>3. How do we use your data?</h3>
+      <ul>
+        <li>To provide and personalize your DaySavvy experience.</li>
+        <li>To secure your account and protect against unauthorized access.</li>
+        <li>To improve features, fix issues, and analyze usage patterns (anonymized).</li>
+        <li>To send important updates or notifications (never spam).</li>
+        <li>To provide AI-powered assistance including task management, reminders, and emotional support.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>4. Third-party services</h3>
+      <p>We use trusted third-party services to power certain features (such as AI processing, email delivery, and authentication). These services receive only the minimum data needed to function and are bound by their own privacy policies and data protection agreements.</p>
+      <p>We do <b>not</b> share your personal data with advertisers or data brokers.</p>
+    </div>
+
+    <div class="section">
+      <h3>5. Data storage & security</h3>
+      <ul>
+        <li>All data is encrypted in transit (HTTPS/TLS).</li>
+        <li>Passwords are securely hashed and never stored in plain text.</li>
+        <li>Access to user data is restricted and monitored.</li>
+        <li>We implement rate limiting and security controls to prevent abuse.</li>
+        <li>While we take security seriously, no system is 100% secure. We continuously work to improve our protections.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>6. Your rights & choices</h3>
+      <ul>
+        <li>You can request to download or delete your account and data anytime by emailing <a href="mailto:daysavvy.ei@gmail.com">daysavvy.ei@gmail.com</a>.</li>
+        <li>You can delete your account directly from within the app.</li>
+        <li>You can revoke microphone or notification permissions in your browser or device settings.</li>
+        <li>You can opt out of any beta features in your settings (when available).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>7. Cookies & local storage</h3>
+      <p>DaySavvy uses essential cookies and local storage for authentication, session management, and remembering your preferences (such as theme). We do <b>not</b> use tracking cookies or third-party analytics cookies.</p>
+    </div>
+
+    <div class="section">
+      <h3>8. Age requirement</h3>
+      <p>DaySavvy is intended for users aged 13 and above. If you are under 13, please do not use the service without parental consent.</p>
+    </div>
+
+    <div class="section">
+      <h3>9. Disclaimer</h3>
+      <p>DaySavvy is <b>not</b> a medical, therapy, or financial service. AI responses are for informational and productivity purposes only. Please use your own judgment and seek professional help for emergencies or critical decisions.</p>
+    </div>
+
+    <div class="section">
+      <h3>10. Updates & contact</h3>
+      <ul>
+        <li>We may update these terms from time to time. Major changes will be posted here and notified to active users.</li>
+        <li>For questions, data requests, or concerns, email <a href="mailto:daysavvy.ei@gmail.com">daysavvy.ei@gmail.com</a>.</li>
+      </ul>
+    </div>
+
+    <div class="text-center mt-5 mb-2">
+      <a href="{{ url_for('index') }}" class="btn btn-outline-primary back-btn px-4">Back to DaySavvy</a>
+    </div>
+    <div class="text-center text-muted" style="font-size:0.95rem;">
+      &copy; {{ updated.year }} DaySavvy. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
